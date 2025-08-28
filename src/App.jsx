@@ -7,7 +7,7 @@ const App = () => {
     <div>
       <Navbar />
       <Hero />
-      <About
+      <About />
     </div>
   );
 };
