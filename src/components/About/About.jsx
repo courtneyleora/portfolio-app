@@ -1,23 +1,25 @@
 import React from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import "./About.css";
 import theme_pattern from "../../assets/theme_pattern.png";
 import about_profile from "../../assets/about_profile.png";
 
 const About = () => {
   const skills = [
-    { name: "Python", width: "100%" },
-    { name: "React", width: "70%" },
-    { name: "Java", width: "70%" },
-    { name: "CSS", width: "100%" },
-    { name: "REST API", width: "90%" },
-    { name: "Git", width: "100%" },
-    { name: "C", width: "50%" },
-    { name: "JavaScript", width: "80%" },
-    { name: "SQL", width: "90%" },
-    { name: "Flutter", width: "90%" },
-    { name: "Dart", width: "90%" },
-    { name: "Springboot", width: "70%" },
-    { name: "Postgres", width: "90%" },
+    { name: "Python", percent: 90 },
+    { name: "React", percent: 83 },
+    { name: "Java", percent: 76 },
+    { name: "CSS", percent: 83 },
+    { name: "REST API", percent: 76 },
+    { name: "Git", percent: 70 },
+    { name: "C", percent: 50 },
+    { name: "JavaScript", percent: 83 },
+    { name: "SQL", percent: 76 },
+    { name: "Flutter", percent: 85 },
+    { name: "Dart", percent: 85 },
+    { name: "Springboot", percent: 76 },
+    { name: "Postgres", percent: 76 },
   ];
 
   const achievements = [
@@ -28,7 +30,7 @@ const About = () => {
       title: "Awarded",
       description: (
         <>
-          <p>Uber DEI Advocate</p>
+          <p> Uber DEI Advocate</p>
           <p>JPMorgan Chase Code for Good Honorable Team Member</p>
           <p>AmazonNext Scholar</p>
           <p>RISE In Computing Scholar</p>
@@ -37,6 +39,13 @@ const About = () => {
     },
     { title: "5+", description: "Projects Completed" },
   ];
+
+  const responsive = {
+    superLargeDesktop: { breakpoint: { max: 4000, min: 1200 }, items: 5 },
+    desktop: { breakpoint: { max: 1200, min: 900 }, items: 4 },
+    tablet: { breakpoint: { max: 900, min: 600 }, items: 2 },
+    mobile: { breakpoint: { max: 600, min: 0 }, items: 1 },
+  };
 
   return (
     <div className="about">
@@ -76,13 +85,36 @@ const About = () => {
               through accessible, creative digital solutions.
             </p>
           </div>
-          <div className="about-skills">
-            {skills.map((skill, index) => (
-              <div className="about-skill" key={index}>
-                <p>{skill.name}</p>
-                <hr style={{ width: skill.width }} />
-              </div>
-            ))}
+          <div className="about-skills-carousel">
+            <Carousel
+              responsive={responsive}
+              infinite={true}
+              autoPlay={true}
+              autoPlaySpeed={2000} // scrolls every 2 seconds; adjust as needed
+              arrows={true}
+              showDots={true}
+              containerClass="carousel-container"
+              itemClass="carousel-item-padding-40-px"
+            >
+              {skills.map((skill, idx) => (
+                <div className="skill-box" key={skill.name}>
+                  <span className="title">{skill.name}</span>
+                  <div className="skill-bar">
+                    <span
+                      className="skill-per"
+                      style={{
+                        width: `${skill.percent}%`,
+                        background:
+                          "linear-gradient(90deg, #cc6c92 0%, #4c3a42 100%)",
+                        animationDelay: `${0.1 + idx * 0.05}s`,
+                      }}
+                    >
+                      <span className="tooltip">{skill.percent}%</span>
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </Carousel>
           </div>
           <div className="about-achieve">
             {achievements.map((achieve, index) => (

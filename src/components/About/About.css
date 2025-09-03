@@ -1,10 +1,8 @@
 .about {
-  margin: 100px auto 0 auto;
-  max-width: 1100px;
-  padding: 40px 24px 80px 24px;
-  background: #fff;
-  border-radius: 32px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  width: 100vw;
+  max-width: 100%;
+  margin: 0;
+  padding: 48px 0 64px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,34 +11,37 @@
 
 .about-title {
   width: 100%;
-  align-items: center;
   display: flex;
   flex-direction: column;
-  margin-bottom: 0;
+  align-items: center;
   position: relative;
+  margin-bottom: 0;
 }
 
 .about-title h1 {
-  font-size: 3.5rem;
+  font-size: 60px;
   font-weight: 700;
-  color: #ff6f91;
+  font-family: "Edu NSW ACT Cursive", cursive;
+  color: #cc6c92;
   margin: 0;
   line-height: 1.1;
   text-align: center;
-  position: relative;
   z-index: 1;
   letter-spacing: 2px;
+  padding: 0 16px;
 }
 
 .about-title img {
   width: 100%;
   max-width: 100%;
-  height: 550px;
+  height: 160px;
   object-fit: contain;
-  margin-top: -180px; /* Pull image closer to the title */
+  margin-top: 8px;
   border-radius: 8px;
   display: block;
   z-index: 0;
+  background: transparent;
+  position: static;
 }
 
 .about-sections {
@@ -60,8 +61,8 @@
 }
 
 .about-left img {
-  width: 220px;
-  height: 220px;
+  width: min(220px, 40vw);
+  height: min(220px, 40vw);
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
@@ -74,39 +75,181 @@
   flex-direction: column;
   gap: 32px;
   min-width: 280px;
+  width: 100%;
+  padding-right: 40px;
 }
 
 .about-para p {
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2vw, 1.15rem);
   color: #272225;
   margin-bottom: 14px;
   line-height: 1.7;
-  font-family: "Lato", sans-serif;
-  background: #f8f4f5;
+  font-family: "Libertinus Serif Display", system-ui;
+  background: #f6f1f2;
   border-radius: 8px;
   padding: 10px 16px;
 }
 
 .about-skills {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 32px auto;
+  padding: 0 16px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 18px 32px;
-  margin-bottom: 12px;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.about-skill {
-  min-width: 120px;
-  flex: 1 1 120px;
+.skill-box {
+  width: 100%;
+  margin: 0 0 12px 0;
+}
+
+.skill-box .title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #cc6c92;
+  margin-bottom: 6px;
+}
+
+.skill-box .skill-bar {
+  height: 10px;
+  width: 100%;
+  border-radius: 6px;
+  background: #f6f1f2;
+  position: relative;
+  margin-top: 2px;
+}
+
+.skill-bar .skill-per {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #cc6c92 0%, #4c3a42 100%);
+  animation: progress 0.7s cubic-bezier(0.4, 2, 0.3, 1) forwards;
+  opacity: 1;
+  transition: width 0.7s cubic-bezier(0.4, 2, 0.3, 1);
+}
+
+@keyframes progress {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.skill-per .tooltip {
+  position: absolute;
+  right: -18px;
+  top: -28px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: #cc6c92;
+  z-index: 1;
+}
+
+.tooltip::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  height: 10px;
+  width: 10px;
+  z-index: -1;
+  background: #cc6c92;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.about-achieve {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: stretch;
+  margin-top: 32px;
+  justify-content: center;
+}
+
+.about-achieve-item {
+  background: linear-gradient(120deg, #fee1ed 60%, #e8d3d3 100%);
+  border-radius: 18px;
+  padding: 24px 20px;
+  min-width: 180px;
+  max-width: 320px;
+  flex: 1 1 180px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: #fee1ed;
-  border-radius: 8px;
-  padding: 8px 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 16px rgba(204, 108, 146, 0.08);
+  border-left: 6px solid #cc6c92;
+  transition: transform 0.2s;
 }
 
-.about-skill p {
+.about-achieve-item:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(204, 108, 146, 0.18);
+}
+
+.about-achieve-item h2 {
+  font-size: 1.7rem;
+  color: #cc6c92;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #cc6c92 40%, #4c3a42 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-achieve-item p {
+  font-size: 1.08rem;
+  color: #272225;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.about-achieve hr {
+  display: none;
+}
+
+.about-skills-carousel {
+  width: 100%;
+  margin: 0 auto 24px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-container {
+  width: 100%;
+}
+
+.carousel-item-padding-40-px {
+  padding: 0 20px;
+}
+
+.about-skills-carousel .about-skill {
+  background: #fee1ed;
+  border-radius: 8px;
+  padding: 16px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  min-width: 120px;
+  max-width: 180px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.about-skills-carousel .about-skill p {
   font-size: 1rem;
   font-weight: 600;
   color: #ff6f91;
@@ -114,109 +257,107 @@
   letter-spacing: 1px;
 }
 
-.about-skill hr {
+.about-skills-carousel .about-skill hr {
   border: none;
   height: 6px;
-  background: linear-gradient(90deg, #ff6f91 0%, #9ec9ff 100%);
-  border-radius: 3px;
+  background: linear-gradient(264deg, #4c3a42 -5.09%, #cc6c92 106.28%);
+  border-radius: 50px;
   transition: width 0.7s cubic-bezier(0.4, 2, 0.3, 1);
 }
 
-.about-achieve {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  align-items: stretch;
-  margin-top: 16px;
+.react-multi-carousel-dot-list {
+  margin-top: 12px;
+  text-align: center;
+}
+.react-multi-carousel-dot button {
+  border: 2px solid #ff6f91;
+  background: transparent;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+}
+.react-multi-carousel-dot--active button {
+  background: #ff6f91;
 }
 
-.about-achieve-item {
-  background: #fee1ed;
-  border-radius: 18px;
-  padding: 18px 24px;
-  min-width: 160px;
-  flex: 1 1 160px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  border-left: 6px solid #ff6f91;
-}
-
-.about-achieve-item h2 {
-  font-size: 1.5rem;
-  color: #ff6f91;
-  margin-bottom: 6px;
-  font-weight: 700;
-}
-
-.about-achieve-item p {
-  font-size: 1rem;
-  color: #272225;
-  margin-bottom: 4px;
-}
-
-.about-achieve hr {
-  display: none;
-}
-
-/* Responsive Design */
 @media (max-width: 900px) {
-  .about {
-    margin-top: 70px;
-    padding: 24px 2vw 40px 2vw;
-    border-radius: 24px;
-  }
-  .about-title h1 {
-    font-size: 2.2rem;
-    padding: 0 12px;
-  }
-  .about-title img {
-    width: 100%;
-    max-width: 100%;
-    height: 20px;
-    margin-top: 4px;
-  }
   .about-sections {
     flex-direction: column;
     gap: 32px;
     align-items: center;
   }
   .about-left img {
-    width: 140px;
-    height: 140px;
+    width: min(140px, 40vw);
+    height: min(140px, 40vw);
+  }
+  .about-skills-carousel .about-skill {
+    min-width: 100px;
+    max-width: 140px;
+    padding: 12px 8px;
+  }
+  .about-achieve {
+    gap: 18px;
+  }
+  .about-achieve-item {
+    min-width: 140px;
+    max-width: 95vw;
+    padding: 16px 12px;
+  }
+  .about-achieve-item h2 {
+    font-size: 1.2rem;
   }
 }
 
 @media (max-width: 600px) {
   .about {
-    margin-top: 40px;
-    padding: 12px 1vw 24px 1vw;
-    border-radius: 12px;
+    padding: 12px 0 24px 0;
+    gap: 24px;
   }
   .about-title h1 {
-    font-size: 1.3rem;
+    font-size: clamp(1.2rem, 7vw, 2rem);
+    font-weight: 700;
     padding: 0 4px;
   }
   .about-title img {
-    width: 100%;
-    max-width: 100%;
-    height: 12px;
-    margin-top: 2px;
+    height: 2rem; /* Match h1 font-size at this breakpoint */
   }
   .about-left img {
-    width: 90px;
-    height: 90px;
+    width: min(90px, 40vw);
+    height: min(90px, 40vw);
   }
   .about-right {
     gap: 18px;
     min-width: 0;
   }
+  .about-achieve {
+    gap: 10px;
+    margin-top: 18px;
+  }
   .about-achieve-item {
     min-width: 90px;
-    padding: 8px 6px;
+    padding: 10px 6px;
+  }
+  .about-achieve-item h2 {
+    font-size: 1rem;
+  }
+  .about-achieve-item p {
+    font-size: 0.95rem;
   }
   .about-skills {
-    gap: 10px 16px;
+    max-width: 98vw;
+    padding: 0 4px;
+    gap: 16px;
+  }
+  .skill-box .title {
+    font-size: 0.9rem;
+  }
+  .skill-box .skill-bar {
+    height: 8px;
+  }
+  .about-skills-carousel .about-skill {
+    min-width: 90px;
+    max-width: 95vw;
+    padding: 10px 4px;
   }
 }
